@@ -1,8 +1,68 @@
-<!DOCTYPE html>
-<html>
-  <title>Progetto Orario</title>
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/871dfa4dcd.js" crossorigin="anonymous"></script>
+    <title>Progetto Orario</title>
+  </head>
   <body>
-    <h1>Progetto Orario</h1>
-    <p>This is a paragraph.</p>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+      <div class="container-fluid">
+        <span class="navbar-brand" href="#"><i class="far fa-clock"></i> Progetto Orario</span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Orario odierno</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Orario completo</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <table class="table table-bordered" style="width: 500px; margin: 20px auto;">
+      <tr>
+        <th>Ora</th>
+        <th>Lunedì</th>
+      </tr>
+      <tr>
+        <td>08:00 - 08:50</td>
+        <td>Telecomunicazioni</td>
+      </tr>
+      <tr>
+        <td>08:50 - 09:40</td>
+        <td>Telecomunicazioni</td>
+      </tr>
+      <tr>
+        <td>09:40 - 10:30</td>
+        <td>Telecomunicazioni</td>
+      </tr>
+      <tr>
+        <td>10:30 - 11:20</td>
+        <td>Storia</td>
+      </tr>
+      <tr>
+        <td>11:20 - 12:10</td>
+        <td>Robotica</td>
+      </tr>
+      <tr>
+        <td>12:10 - 13:00</td>
+        <td>Robotica</td>
+      </tr>
+    </table>
+    <div class="text-center">
+      <div style="display: inline-block; text-align: left;">
+        <p><b>Ora attuale:</b> Telecomunicazioni</p>
+        <p><b>Tempo rimanente:</b> 30 minuti</p>
+        <a href="#"><i class="far fa-calendar-alt" style="text-decoration: none; margin-right: 5px"></i>Visualizza Orario completo</a>
+      </div>
+    </div>
   </body>
 </html>
