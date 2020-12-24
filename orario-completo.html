@@ -6,7 +6,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/871dfa4dcd.js" crossorigin="anonymous"></script>
-    <title>Progetto Orario</title>
+    <link type="text/css" rel="stylesheet" href="css/main.css"/>
+    <title>Orario completo • Progetto Orario</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
@@ -27,7 +28,7 @@
         </div>
       </div>
     </nav>
-    <table class="table table-bordered text-center" style="width: 90%; max-width: 800px; min-width: 780px; margin: 20px auto;">
+    <table class="table table-bordered text-center tabella-orario-completo">
       <tr>
         <th>Ora</th>
         <th>Lunedì</th>
@@ -42,7 +43,7 @@
         <td>Telecomunicazioni</td>
         <td>Italiano</td>
         <td>Informatica</td>
-        <td>Sistemi e Reti</td>
+        <td>Sistemi e reti</td>
         <td>Italiano</td>
         <td>T.P.S.I.T.</td>
       </tr>
@@ -51,7 +52,7 @@
         <td>Telecomunicazioni</td>
         <td>Italiano</td>
         <td>Informatica</td>
-        <td>Sistemi e Reti</td>
+        <td>Sistemi e reti</td>
         <td>Storia</td>
         <td>T.P.S.I.T.</td>
       </tr>
@@ -59,7 +60,7 @@
         <td>09:40 - 10:30</td>
         <td>Telecomunicazioni</td>
         <td>Inglese</td>
-        <td>Sistemi e Reti</td>
+        <td>Sistemi e reti</td>
         <td>IRC</td>
         <td>T.P.S.I.T.</td>
         <td>Informatica</td>
@@ -68,7 +69,7 @@
         <td>10:30 - 11:20</td>
         <td>Storia</td>
         <td>Informatica</td>
-        <td>Sistemi e Reti</td>
+        <td>Sistemi e reti</td>
         <td>Italiano</td>
         <td>Matematica</td>
         <td>Informatica</td>
@@ -95,7 +96,16 @@
         <td colspan="7">...</td>
       </tr>
       <tr>
-        <td>15:40 - 17:20</td>
+        <td>15:40 - 16:30</td>
+        <td></td>
+        <td></td>
+        <td>Ed. fisica</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>16:30 - 17:20</td>
         <td></td>
         <td></td>
         <td>Ed. fisica</td>
@@ -106,9 +116,15 @@
     </table>
     <br/>
     <div class="text-center">
-      <div style="display: inline-block; text-align: left;">
-        <p>Vuoi sapere le materie che hai oggi? <a href="index.html"><i class="far fa-calendar-alt" style="text-decoration: none; margin-right: 5px"></i>Visualizza Orario odierno</a></p>
+      <div class="info-orario-completo">
+        <p>Vuoi sapere le materie che hai oggi? <a href="index.html"><i class="far fa-calendar-alt icona-link"></i>Visualizza Orario odierno</a></p>
       </div>
     </div>
+    <footer class="footer">
+      <div class="container footer-div">
+        <span class="text-muted"><i class="fas fa-user"></i> Creato da Scarano Davide</span>
+        <span class="text-muted icona-scuola"><i class="fas fa-school icona-footer"></i> Istituto d'Istruzione "Marie Curie"</span>
+      </div>
+    </footer>
   </body>
 </html>
