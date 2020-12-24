@@ -1,8 +1,66 @@
-.footer {
+footer.footer {
   position: absolute;
   bottom: 0;
   width: 100%;
   height: 60px;
   line-height: 60px;
   background-color: #F5F5F5;
+}
+
+table#tabella {
+  width: 50%;
+  max-width: 500px;
+  min-width: 256px;
+  margin: 20px auto;
+}
+
+div.info-orario-odierno {
+  display: inline-block;
+  text-align: left;
+}
+
+table.tabella-orario-completo {
+  width: 90%;
+  max-width: 800px;
+  min-width: 780px;
+  margin: 20px auto;
+}
+
+div.info-orario-completo {
+  display: inline-block;
+  text-align: left;
+}
+
+i.icona-link {
+  text-decoration: none;
+  margin-right: 5px;
+}
+
+div.messaggio {
+  width: 50%;
+  max-width: 500px;
+  min-width: 256px;
+  margin: 20px auto;
+}
+
+p.testo-messaggio {
+  margin: 0px;
+}
+
+div.footer-div {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: flex;
+  justify-content: space-around;
+}
+
+i.icona-footer {
+  margin-left: 5px;
+}
+
+@media (max-width: 576px) {
+  span.icona-scuola {
+    display: none;
+  }
 }
