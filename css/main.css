@@ -10,7 +10,7 @@ footer.footer {
 table#tabella {
   width: 50%;
   max-width: 500px;
-  min-width: 256px;
+  min-width: 272px;
   margin: 20px auto;
 }
 
@@ -41,7 +41,7 @@ i.icona-link {
 div.messaggio {
   width: 50%;
   max-width: 500px;
-  min-width: 256px;
+  min-width: 272px;
   margin: 20px auto;
 }
 
@@ -59,6 +59,10 @@ div.footer-div {
 
 i.icona-footer {
   margin-left: 5px;
+}
+
+i.icona-vacanza {
+  margin-right: 10px;
 }
 
 @media (max-width: 576px) {
