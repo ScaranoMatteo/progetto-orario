@@ -9,19 +9,122 @@ var orario=[
       ["Sabato", "T.P.S.I.T.", "T.P.S.I.T.", "Informatica", "Informatica", "Informatica", null, null, null]
   ];
 
+//
+var giorniDiVacanza=[
+      // Giorno dei morti
+      [2, 10, 2020, "Giorno dei morti", "fas fa-cross"],
+
+      // Festa dell'Immacolata
+      [7, 11, 2020, "Festa dell'Immacolata", "fas fa-church"],
+      [8, 11, 2020, "Festa dell'Immacolata", "fas fa-church"],
+
+      // Vacanze di Natale
+      [24, 11, 2020, "Vacanze di Natale", "fas fa-snowman"],
+      [25, 11, 2020, "Vacanze di Natale", "fas fa-snowman"],
+      [26, 11, 2020, "Vacanze di Natale", "fas fa-snowman"],
+      [27, 11, 2020, "Vacanze di Natale", "fas fa-snowman"],
+      [28, 11, 2020, "Vacanze di Natale", "fas fa-snowman"],
+      [29, 11, 2020, "Vacanze di Natale", "fas fa-snowman"],
+      [30, 11, 2020, "Vacanze di Natale", "fas fa-snowman"],
+      [31, 11, 2020, "Vacanze di Natale", "fas fa-snowman"],
+      [1, 0, 2021, "Vacanze di Natale", "fas fa-snowman"],
+      [2, 0, 2021, "Vacanze di Natale", "fas fa-snowman"],
+      [3, 0, 2021, "Vacanze di Natale", "fas fa-snowman"],
+      [4, 0, 2021, "Vacanze di Natale", "fas fa-snowman"],
+      [5, 0, 2021, "Vacanze di Natale", "fas fa-snowman"],
+      [6, 0, 2021, "Vacanze di Natale", "fas fa-snowman"],
+
+      // Vacanze di Carnevale
+      [15, 1, 2021, "Vacanze di Carnevale", "fas fa-theater-masks"],
+      [16, 1, 2021, "Vacanze di Carnevale", "fas fa-theater-masks"],
+
+      // Vacanze di Pasqua
+      [1, 3, 2021, "Vacanze di Pasqua", "fas fa-egg"],
+      [2, 3, 2021, "Vacanze di Pasqua", "fas fa-egg"],
+      [3, 3, 2021, "Vacanze di Pasqua", "fas fa-egg"],
+      [4, 3, 2021, "Vacanze di Pasqua", "fas fa-egg"],
+      [5, 3, 2021, "Vacanze di Pasqua", "fas fa-egg"],
+      [6, 3, 2021, "Vacanze di Pasqua", "fas fa-egg"],
+
+      // Festa della Liberazione
+      [25, 3, 2021, "Festa della Liberazione", "fas fa-flag"],
+
+      // Festa del Lavoro
+      [1, 4, 2021, "Festa del Lavoro", "fas fa-briefcase"],
+
+      // Festa della Repubblica
+      [2, 5, 2021, "Festa della Repubblica", "fas fa-university"],
+  ];
+
 function paginaCaricata() {
   //
-  var oggi=new Date(2020, 11, 23, 10, 25);
+  var oggi=new Date(2020, 11, 25, 8, 15);
 
   //
   var totaleMinuti=oggi.getHours()*60+oggi.getMinutes();
 
   //
-  orarioOdierno(oggi.getDay(), totaleMinuti);
+  orarioOdierno(oggi, oggi.getDay(), totaleMinuti);
 }
 
-function orarioOdierno(i, totaleMinuti) {
-  if(i!=0 && totaleMinuti<480) {
+function orarioOdierno(oggi, i, totaleMinuti) {
+  if(giornoSenzaScuola(oggi)) {
+    //
+    document.getElementById("tabella").remove();
+
+    //
+    var image=document.createElement("img");
+    image.setAttribute("src", "img/school-closed.jpg");
+    image.setAttribute("alt", "scuola chiusa");
+    image.setAttribute("class", "img-fluid");
+    document.getElementById("info").appendChild(image);
+  } else if(giornoDiVacanza(oggi)) {
+    //
+    document.getElementById("tabella").remove();
+
+    //
+    var image=document.createElement("img");
+    image.setAttribute("src", "img/school-closed.jpg");
+    image.setAttribute("alt", "scuola chiusa");
+    image.setAttribute("class", "img-fluid");
+    document.getElementById("info").appendChild(image);
+
+    //
+    var title=document.createElement("h3");
+    //
+    var icon=document.createElement("i");
+    icon.setAttribute("class", iconaGiornoDiVacanza(oggi)+" icona-vacanza");
+    title.appendChild(icon);
+    //
+    var span=document.createElement("span");
+    var text=document.createTextNode(testoGiornoDiVacanza(oggi));
+    span.appendChild(text);
+    title.appendChild(span);
+    document.getElementById("info").appendChild(title);
+  } else if(i==0) {
+    //
+    document.getElementById("tabella").remove();
+
+    //
+    var image=document.createElement("img");
+    image.setAttribute("src", "img/school-closed.jpg");
+    image.setAttribute("alt", "scuola chiusa");
+    image.setAttribute("class", "img-fluid");
+    document.getElementById("info").appendChild(image);
+
+    //
+    var title=document.createElement("h3");
+    //
+    var icon=document.createElement("i");
+    icon.setAttribute("class", "far fa-calendar-times icona-vacanza");
+    title.appendChild(icon);
+    //
+    var span=document.createElement("span");
+    var text=document.createTextNode("Oggi è Domenica!");
+    span.appendChild(text);
+    title.appendChild(span);
+    document.getElementById("info").appendChild(title);
+  } else if(i!=0 && totaleMinuti<480) {
     riempiTabella(i);
 
     var div=document.createElement("div");
@@ -131,16 +234,41 @@ function orarioOdierno(i, totaleMinuti) {
 
     //
     document.getElementById("info").appendChild(div);
-  } else if(i==0) {
-    //
-    document.getElementById("tabella").remove();
+  }
+}
 
-    //
-    var image=document.createElement("img");
-    image.setAttribute("src", "img/school-closed.jpg");
-    image.setAttribute("alt", "scuola chiusa");
-    image.setAttribute("class", "img-fluid");
-    document.getElementById("info").appendChild(image);
+function giornoSenzaScuola(oggi) {
+  var oggiInMillisecondi=oggi.getTime();
+  var inizioScuola=new Date(2020, 8, 14, 8, 0);
+  var fineScuola=new Date(2021, 5, 10, 13, 0);
+
+  //
+  if((oggiInMillisecondi<inizioScuola.getTime()) || (oggiInMillisecondi>fineScuola.getTime())) {
+    return true;
+  }
+}
+
+function giornoDiVacanza(oggi) {
+  for(var i=0; i<giorniDiVacanza.length; i++) {
+    if(giorniDiVacanza[i][0]==oggi.getDate() && giorniDiVacanza[i][1]==oggi.getMonth() && giorniDiVacanza[i][2]==oggi.getFullYear()) {
+      return true;
+    }
+  }
+}
+
+function iconaGiornoDiVacanza(oggi) {
+  for(var i=0; i<giorniDiVacanza.length; i++) {
+    if(giorniDiVacanza[i][0]==oggi.getDate() && giorniDiVacanza[i][1]==oggi.getMonth() && giorniDiVacanza[i][2]==oggi.getFullYear()) {
+      return giorniDiVacanza[i][4];
+    }
+  }
+}
+
+function testoGiornoDiVacanza(oggi) {
+  for(var i=0; i<giorniDiVacanza.length; i++) {
+    if(giorniDiVacanza[i][0]==oggi.getDate() && giorniDiVacanza[i][1]==oggi.getMonth() && giorniDiVacanza[i][2]==oggi.getFullYear()) {
+      return giorniDiVacanza[i][3];
+    }
   }
 }
 
