@@ -17,6 +17,7 @@ table#tabella {
 div.info-orario-odierno {
   display: inline-block;
   text-align: left;
+  margin: 0px 10px;
 }
 
 table.tabella-orario-completo {
@@ -29,6 +30,7 @@ table.tabella-orario-completo {
 div.info-orario-completo {
   display: inline-block;
   text-align: left;
+  margin: 0px 10px;
 }
 
 i.icona-link {
@@ -62,5 +64,12 @@ i.icona-footer {
 @media (max-width: 576px) {
   span.icona-scuola {
     display: none;
+  }
+}
+
+@media (max-height: 740px) {
+  footer.footer {
+    position: relative;
+    margin-top: 15px;
   }
 }
