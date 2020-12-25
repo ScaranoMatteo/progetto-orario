@@ -139,6 +139,7 @@ function orarioOdierno(i, totaleMinuti) {
     var image=document.createElement("img");
     image.setAttribute("src", "img/school-closed.jpg");
     image.setAttribute("alt", "scuola chiusa");
+    image.setAttribute("class", "img-fluid");
     document.getElementById("info").appendChild(image);
   }
 }
