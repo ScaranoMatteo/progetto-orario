@@ -376,11 +376,3 @@ function materiaSuccessiva(i, totaleMinuti) {
     return "---";
   }
 }
-
-function aggiusta(valore) {
-	if(valore<10) {
-		return "0"+valore;
-	} else {
-		return valore;
-	}
-}
