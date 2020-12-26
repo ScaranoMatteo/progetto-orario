@@ -65,6 +65,23 @@ i.icona-vacanza {
   margin-right: 10px;
 }
 
+div.filtro {
+  margin: auto;
+  max-width: 800px;
+}
+
+li.lista-filtro {
+  margin: 5px;
+}
+
+i.icona-filtro {
+  margin-right: 5px;
+}
+
+h6.azzera-filtro {
+  margin: 8px 0px 0px 0px;
+}
+
 @media (max-width: 576px) {
   span.icona-scuola {
     display: none;
