@@ -56,9 +56,9 @@ var giorniDiVacanza=[
       [2, 5, 2021, "Festa della Repubblica", "fas fa-university"],
   ];
 
-function paginaCaricata() {
+function paginaCaricataOrarioOdierno() {
   //
-  var oggi=new Date(2020, 11, 25, 8, 15);
+  var oggi=new Date(2020, 11, 26, 8, 15);
 
   //
   var totaleMinuti=oggi.getHours()*60+oggi.getMinutes();
@@ -374,5 +374,30 @@ function materiaSuccessiva(i, totaleMinuti) {
     return materiaSuccessiva;
   } else {
     return "---";
+  }
+}
+
+function paginaCaricataOrarioCompleto() {
+
+}
+
+function filtroMaterie(materia) {
+  for(var i=1; i<49; i++) {
+    var lezione=document.getElementById("lezione-"+i);
+    if(materia==lezione.innerHTML) {
+      lezione.style.backgroundColor="lightgrey";
+      lezione.style.opacity=1;
+    } else {
+      lezione.style.backgroundColor="white";
+      lezione.style.opacity=0.1;
+    }
+  }
+}
+
+function azzeraFiltro() {
+  for(var i=1; i<49; i++) {
+    var lezione=document.getElementById("lezione-"+i);
+    lezione.style.backgroundColor="white";
+    lezione.style.opacity=1;
   }
 }
