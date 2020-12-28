@@ -58,12 +58,12 @@ var giorniDiVacanza=[
 
 // funzione che viene chiamata quando il file index.html è stata caricato
 function paginaCaricataOrarioOdierno() {
-  var oggi=new Date(2020, 11, 21, 12, 58);
+  var oggi=new Date(2020, 11, 21, 6, 09);
   var totaleMinuti=oggi.getHours()*60+oggi.getMinutes();
-  orarioOdierno(oggi, oggi.getDay(), totaleMinuti);
+  riempiPagina(oggi, oggi.getDay(), totaleMinuti);
 }
 
-function orarioOdierno(oggi, i, totaleMinuti) {
+function riempiPagina(oggi, i, totaleMinuti) {
   // controllo se l'anno scolastico non è ancora iniziato o se è finito
   if(annoScolasticoNonIniziato(oggi) || annoScolasticoFinito(oggi)) {
     aggiungiInfo("far fa-calendar", annoScolasticoNonIniziato(oggi)?"L'anno scolastico non è  ancora iniziato!":"L'anno scolastico è finito!");
@@ -387,4 +387,175 @@ function azzeraFiltro() {
     lezione.style.backgroundColor="white";
     lezione.style.opacity=1;
   }
+}
+
+// funzione
+function dataSelezionataTest(selezione) {
+  document.getElementById("body-test").innerHTML=`
+  <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+    <div class="container-fluid">
+      <span class="navbar-brand"><i class="far fa-clock"></i> Progetto Orario</span>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Orario odierno</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="orario-completo.html">Orario completo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="test.html">Test</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="text-center test">
+    <h5>Seleziona una data dalla lista per vedere il risultato</h5>
+    <select onchange="dataSelezionataTest(this.value)" class="custom-select">
+      <option value="oggi" selected>Seleziona una data</option>
+      <option value="lunedi">Lunedì</option>
+      <option value="martedi">Martedì</option>
+      <option value="mercoledi">Mercoledì</option>
+      <option value="giovedi">Giovedì</option>
+      <option value="venerdi">Venerdì</option>
+      <option value="sabato">Sabato</option>
+      <option value="domenica">Domenica</option>
+      <option value="lezioni-non-iniziate">Lezioni non ancora iniziate</option>
+      <option value="lezioni-finite">Lezioni finite</option>
+      <option value="lezioni-pomeridiane">Lezioni pomeridiane (Ed. fisica)</option>
+      <option value="morti">Giorno dei morti</option>
+      <option value="immacolata">Festa dell'Immacolata</option>
+      <option value="natale">Vacanze di Natale</option>
+      <option value="carnevale">Vacanze di Carnevale</option>
+      <option value="pasqua">Vacanze di Pasqua</option>
+      <option value="liberazione">Festa della Liberazione</option>
+      <option value="lavoro">Festa del Lavoro</option>
+      <option value="repubblica">Festa della Repubblica</option>
+      <option value="anno-non-iniziato">Anno scolastico non ancora iniziato</option>
+      <option value="anno-finito">Anno scolastico finito</option>
+    </select>
+  </div>
+  <table id="tabella" class="table table-bordered text-center">
+    <tr>
+      <th>Ora</th>
+      <th id="giorno"></th>
+    </tr>
+    <tr id="riga-1">
+      <td>08:00 - 08:50</td>
+      <td id="materia-1"></td>
+    </tr>
+    <tr id="riga-2">
+      <td>08:50 - 09:40</td>
+      <td id="materia-2"></td>
+    </tr>
+    <tr id="riga-3">
+      <td>09:40 - 10:30</td>
+      <td id="materia-3"></td>
+    </tr>
+    <tr id="riga-4">
+      <td>10:30 - 11:20</td>
+      <td id="materia-4"></td>
+    </tr>
+    <tr id="riga-5">
+      <td>11:20 - 12:10</td>
+      <td id="materia-5"></td>
+    </tr>
+    <tr id="riga-6">
+      <td>12:10 - 13:00</td>
+      <td id="materia-6"></td>
+    </tr>
+    <tr>
+      <td colspan="2">...</td>
+    </tr>
+    <tr id="riga-7">
+      <td>15:40 - 16:30</td>
+      <td id="materia-7"></td>
+    </tr>
+    <tr id="riga-8">
+      <td>16:30 - 17:20</td>
+      <td id="materia-8"></td>
+    </tr>
+  </table>
+  <br/>
+  <div id="info" class="text-center">
+  </div>
+  <footer class="footer">
+    <div class="container footer-div">
+      <span class="text-muted"><i class="fas fa-user"></i> Creato da Scarano Davide</span>
+      <span class="text-muted icona-scuola"><i class="fas fa-school icona-footer"></i> Istituto d'Istruzione "Marie Curie"</span>
+    </div>
+  </footer>`;
+
+  switch(selezione) {
+    case "oggi":
+      var data=new Date();
+      break;
+    case "lunedi":
+      var data=new Date(2020, 10, 9, 8, 0);
+      break;
+    case "martedi":
+      var data=new Date(2020, 10, 10, 8, 50);
+      break;
+    case "mercoledi":
+      var data=new Date(2020, 10, 11, 9, 40);
+      break;
+    case "giovedi":
+      var data=new Date(2020, 10, 12, 10, 30);
+      break;
+    case "venerdi":
+      var data=new Date(2020, 10, 13, 11, 20);
+      break;
+    case "sabato":
+      var data=new Date(2020, 10, 14, 12, 0);
+      break;
+    case "domenica":
+      var data=new Date(2020, 10, 15);
+      break;
+    case "lezioni-non-iniziate":
+      var data=new Date(2020, 10, 14, 7, 0);
+      break;
+    case "lezioni-finite":
+      var data=new Date(2020, 10, 14, 14, 0);
+      break;
+    case "lezioni-pomeridiane":
+      var data=new Date(2020, 10, 11, 13, 0);
+      break;
+    case "morti":
+      var data=new Date(2020, 10, 2);
+      break;
+    case "immacolata":
+      var data=new Date(2020, 11, 7);
+      break;
+    case "natale":
+      var data=new Date(2020, 11, 24);
+      break;
+    case "carnevale":
+      var data=new Date(2021, 1, 15);
+      break;
+    case "pasqua":
+      var data=new Date(2021, 3, 1);
+      break;
+    case "liberazione":
+      var data=new Date(2021, 3, 25);
+      break;
+    case "lavoro":
+      var data=new Date(2021, 4, 1);
+      break;
+    case "repubblica":
+      var data=new Date(2021, 5, 2);
+      break;
+    case "anno-non-iniziato":
+      var data=new Date(2020, 0, 1);
+      break;
+    case "anno-finito":
+      var data=new Date(2021, 11, 1);
+      break;
+  }
+  
+  var totaleMinuti=data.getHours()*60+data.getMinutes();
+  riempiPagina(data, data.getDay(), totaleMinuti);
 }
