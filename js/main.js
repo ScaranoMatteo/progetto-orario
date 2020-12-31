@@ -398,7 +398,6 @@ function reindirizzaPerTest(selezione) {
 function paginaCaricataTest() {
   var parametriURL=new URLSearchParams(window.location.search);
   selezione=parametriURL.get("selezione");
-  console.log(selezione);
   document.getElementById("menu-a-tendina").value=selezione;
 
   switch(selezione) {
