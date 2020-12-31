@@ -389,106 +389,17 @@ function azzeraFiltro() {
   }
 }
 
-// funzione
-function dataSelezionataTest(selezione) {
-  document.getElementById("body-test").innerHTML=`
-  <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-    <div class="container-fluid">
-      <span class="navbar-brand"><i class="far fa-clock"></i> Progetto Orario</span>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Orario odierno</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="orario-completo.html">Orario completo</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="test.html">Test</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <div class="text-center test">
-    <h5>Seleziona una data dalla lista per vedere il risultato</h5>
-    <select onchange="dataSelezionataTest(this.value)" class="custom-select">
-      <option value="oggi" selected>Seleziona una data</option>
-      <option value="lunedi">Lunedì</option>
-      <option value="martedi">Martedì</option>
-      <option value="mercoledi">Mercoledì</option>
-      <option value="giovedi">Giovedì</option>
-      <option value="venerdi">Venerdì</option>
-      <option value="sabato">Sabato</option>
-      <option value="domenica">Domenica</option>
-      <option value="lezioni-non-iniziate">Lezioni non ancora iniziate</option>
-      <option value="lezioni-finite">Lezioni finite</option>
-      <option value="lezioni-pomeridiane">Lezioni pomeridiane (Ed. fisica)</option>
-      <option value="morti">Giorno dei morti</option>
-      <option value="immacolata">Festa dell'Immacolata</option>
-      <option value="natale">Vacanze di Natale</option>
-      <option value="carnevale">Vacanze di Carnevale</option>
-      <option value="pasqua">Vacanze di Pasqua</option>
-      <option value="liberazione">Festa della Liberazione</option>
-      <option value="lavoro">Festa del Lavoro</option>
-      <option value="repubblica">Festa della Repubblica</option>
-      <option value="anno-non-iniziato">Anno scolastico non ancora iniziato</option>
-      <option value="anno-finito">Anno scolastico finito</option>
-    </select>
-  </div>
-  <table id="tabella" class="table table-bordered text-center">
-    <tr>
-      <th>Ora</th>
-      <th id="giorno"></th>
-    </tr>
-    <tr id="riga-1">
-      <td>08:00 - 08:50</td>
-      <td id="materia-1"></td>
-    </tr>
-    <tr id="riga-2">
-      <td>08:50 - 09:40</td>
-      <td id="materia-2"></td>
-    </tr>
-    <tr id="riga-3">
-      <td>09:40 - 10:30</td>
-      <td id="materia-3"></td>
-    </tr>
-    <tr id="riga-4">
-      <td>10:30 - 11:20</td>
-      <td id="materia-4"></td>
-    </tr>
-    <tr id="riga-5">
-      <td>11:20 - 12:10</td>
-      <td id="materia-5"></td>
-    </tr>
-    <tr id="riga-6">
-      <td>12:10 - 13:00</td>
-      <td id="materia-6"></td>
-    </tr>
-    <tr>
-      <td colspan="2">...</td>
-    </tr>
-    <tr id="riga-7">
-      <td>15:40 - 16:30</td>
-      <td id="materia-7"></td>
-    </tr>
-    <tr id="riga-8">
-      <td>16:30 - 17:20</td>
-      <td id="materia-8"></td>
-    </tr>
-  </table>
-  <br/>
-  <div id="info" class="text-center">
-  </div>
-  <footer class="footer">
-    <div class="container footer-div">
-      <span class="text-muted"><i class="fas fa-user"></i> Creato da Scarano Davide</span>
-      <span class="text-muted icona-scuola"><i class="fas fa-school icona-footer"></i> Istituto d'Istruzione "Marie Curie"</span>
-    </div>
-  </footer>`;
+// funzione che reindirizza alla pagina di test con una query
+function reindirizzaPerTest(selezione) {
+  window.location.href="test.html?selezione="+selezione;
+}
+
+// funzione che carica la pagina di test
+function paginaCaricataTest() {
+  var parametriURL=new URLSearchParams(window.location.search);
+  selezione=parametriURL.get("selezione");
+  console.log(selezione);
+  document.getElementById("menu-a-tendina").value=selezione;
 
   switch(selezione) {
     case "oggi":
@@ -553,6 +464,10 @@ function dataSelezionataTest(selezione) {
       break;
     case "anno-finito":
       var data=new Date(2021, 11, 1);
+      break;
+    default:
+      var data=new Date();
+      document.getElementById("menu-a-tendina").value="oggi";
       break;
   }
 
