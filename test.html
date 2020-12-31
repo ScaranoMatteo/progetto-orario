@@ -10,7 +10,7 @@
     <script src="js/main.js"></script>
     <title>Test • Progetto Orario</title>
   </head>
-  <body id="body-test" onload="dataSelezionataTest('oggi')">
+  <body id="body-test" onload="paginaCaricataTest()">
     <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
       <div class="container-fluid">
         <span class="navbar-brand"><i class="far fa-clock"></i> Progetto Orario</span>
@@ -34,8 +34,8 @@
     </nav>
     <div class="text-center test">
       <h5>Seleziona una data dalla lista per vedere il risultato</h5>
-      <select onchange="dataSelezionataTest(this.value)" class="custom-select">
-        <option selected>Seleziona una data</option>
+      <select id="menu-a-tendina" onchange="reindirizzaPerTest(this.value)" class="custom-select">
+        <option value="oggi">Oggi</option>
         <option value="lunedi">Lunedì</option>
         <option value="martedi">Martedì</option>
         <option value="mercoledi">Mercoledì</option>
