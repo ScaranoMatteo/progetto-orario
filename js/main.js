@@ -1,12 +1,12 @@
 // vettore che contiene l'orario settimanale
 var orario=[
       ["Domenica"],
-      ["Lunedì", "Telecomunicazioni", "Telecomunicazioni", "Telecomunicazioni", "Storia", "Robotica", "Robotica", null, null],
-      ["Martedì", "Italiano", "Italiano", "Inglese", "Informatica", "Matematica", "Matematica", null, null],
-      ["Mercoledì", "Informatica", "Informatica", "Sistemi e reti", "Sistemi e reti", null, null, "Ed. fisica", "Ed. fisica"],
-      ["Giovedì", "Sistemi e reti", "Sistemi e reti", "IRC", "Italiano", "T.P.S.I.T.", "Matematica", null, null],
-      ["Venerdì", "Italiano", "Storia", "T.P.S.I.T.", "Matematica", "Inglese", "Inglese", null, null],
-      ["Sabato", "T.P.S.I.T.", "T.P.S.I.T.", "Informatica", "Informatica", "Informatica", null, null, null]
+      ["Lunedì", "Telecomunicazioni", "Telecomunicazioni", "Telecomunicazioni", "Storia", "Robotica", "Robotica"],
+      ["Martedì", "Italiano", "Italiano", "Inglese", "Informatica", "Matematica", "Matematica"],
+      ["Mercoledì", "Informatica", "Informatica", "Sistemi e reti", "Sistemi e reti", "Ed. fisica", "Ed. fisica"],
+      ["Giovedì", "Sistemi e reti", "Sistemi e reti", "IRC", "Italiano", "T.P.S.I.T.", "Matematica"],
+      ["Venerdì", "Italiano", "Storia", "T.P.S.I.T.", "Matematica", "Inglese", "Inglese"],
+      ["Sabato", "T.P.S.I.T.", "T.P.S.I.T.", "Informatica", "Informatica", "Informatica", null]
   ];
 
 // vettore che contiene i giorni di vacanza
@@ -58,7 +58,7 @@ var giorniDiVacanza=[
 
 // funzione che viene chiamata quando il file index.html è stata caricato
 function paginaCaricataOrarioOdierno() {
-  var oggi=new Date();
+  var oggi=new Date(2021,1,22,8,45);
   var totaleMinuti=oggi.getHours()*60+oggi.getMinutes();
   riempiPagina(oggi, oggi.getDay(), totaleMinuti);
 }
@@ -80,19 +80,13 @@ function riempiPagina(oggi, i, totaleMinuti) {
   else if(i!=0 && totaleMinuti<480) {
     riempiTabellaOrarioOdierno(i);
 
-    aggiungiMessaggioDiAvviso("danger", "Le lezioni di oggi devono ancora iniziare!", false);
+    aggiungiMessaggioDiAvviso("danger", "Le lezioni di oggi devono ancora iniziare!");
   }
   // controllo se le lezioni sono finite nei vari casi (giorni normali, sabato e mercoledi)
-  else if((i!=0 && i!=3 && i!=6 && totaleMinuti>=780) || (i==6 && totaleMinuti>=730) || (i==3 && totaleMinuti>=1040)) {
+  else if((i!=0 && i!=6 && totaleMinuti>=780) || (i==6 && totaleMinuti>=730)) {
     riempiTabellaOrarioOdierno(i);
 
-    aggiungiMessaggioDiAvviso("success", "Le lezioni di oggi sono finite!", false);
-  }
-  // controllo se è mercoledì e se le lezioni non sono ancora finite
-  else if(i==3 && totaleMinuti>=680 && totaleMinuti<940) {
-    riempiTabellaOrarioOdierno(i);
-
-    aggiungiMessaggioDiAvviso("warning", null, true)
+    aggiungiMessaggioDiAvviso("success", "Le lezioni di oggi sono finite!");
   }
   // controllo se non è domenica
   else if(i!=0) {
@@ -184,26 +178,12 @@ function aggiungiInfo(icona, testo) {
 }
 
 // funzione che crea un messaggio di avviso se le lezioni non sono iniziate, sono finite o devono ancora finire
-function aggiungiMessaggioDiAvviso(tipologia, testo, mercoledi) {
+function aggiungiMessaggioDiAvviso(tipologia, testo) {
   var div=document.createElement("div");
   div.setAttribute("class", "alert alert-"+tipologia+" messaggio");
 
-  if(mercoledi) {
-    var paragraph=document.createElement("p");
-    paragraph.setAttribute("class", "testo-messaggio");
-    var text=document.createTextNode("Le lezioni di oggi non sono ancora finite!");
-    paragraph.appendChild(text);
-    div.appendChild(paragraph);
-
-    var paragraph=document.createElement("p");
-    paragraph.setAttribute("class", "testo-messaggio");
-    var text=document.createTextNode("Educazione fisica inizia alle 15:40.");
-    paragraph.appendChild(text);
-    div.appendChild(paragraph);
-  } else {
-    var text=document.createTextNode(testo);
-    div.appendChild(text);
-  }
+  var text=document.createTextNode(testo);
+  div.appendChild(text);
 
   document.getElementById("info").appendChild(div);
 }
@@ -247,7 +227,7 @@ function testoGiornoDiVacanza(oggi) {
 function riempiTabellaOrarioOdierno(i) {
   document.getElementById("giorno").innerHTML=orario[i][0];
 
-  for(var j=1; j<9; j++) {
+  for(var j=1; j<7; j++) {
     document.getElementById("materia-"+j).innerHTML=orario[i][j];
   }
 }
@@ -272,12 +252,6 @@ function evidenziaMateriaAttuale(i, totaleMinuti) {
   } else if(totaleMinuti>=730 && totaleMinuti<780) {
     document.getElementById("riga-6").style.backgroundColor="lightgrey";
     document.getElementById("riga-6").style.fontWeight="bold";
-  } else if(totaleMinuti>=940 && totaleMinuti<990) {
-    document.getElementById("riga-7").style.backgroundColor="lightgrey";
-    document.getElementById("riga-7").style.fontWeight="bold";
-  } else if(totaleMinuti>=990 && totaleMinuti<1040) {
-    document.getElementById("riga-8").style.backgroundColor="lightgrey";
-    document.getElementById("riga-8").style.fontWeight="bold";
   }
 }
 
@@ -295,10 +269,6 @@ function materiaAttuale(i, totaleMinuti) {
     return orario[i][5];
   } else if(totaleMinuti>=730 && totaleMinuti<780) {
     return orario[i][6];
-  } else if(totaleMinuti>=940 && totaleMinuti<990) {
-    return orario[i][7];
-  } else if(totaleMinuti>=990 && totaleMinuti<1040) {
-    return orario[i][8];
   }
 }
 
@@ -316,10 +286,6 @@ function minutiRimanenti(totaleMinuti) {
     return 730-totaleMinuti;
   } else if(totaleMinuti>=730 && totaleMinuti<780) {
     return 780-totaleMinuti;
-  } else if(totaleMinuti>=940 && totaleMinuti<990) {
-    return 990-totaleMinuti;
-  } else if(totaleMinuti>=990 && totaleMinuti<1040) {
-    return 1040-totaleMinuti;
   }
 }
 
@@ -336,10 +302,6 @@ function materiaSuccessiva(i, totaleMinuti) {
   } else if(totaleMinuti>=680 && totaleMinuti<730) {
     var materiaSuccessiva=orario[i][6];
   } else if(totaleMinuti>=730 && totaleMinuti<780) {
-    var materiaSuccessiva=orario[i][7];
-  } else if(totaleMinuti>=940 && totaleMinuti<990) {
-    var materiaSuccessiva=orario[i][8];
-  } else if(totaleMinuti>=990 && totaleMinuti<1040) {
     var materiaSuccessiva=null;
   }
 
@@ -359,7 +321,7 @@ function paginaCaricataOrarioCompleto() {
 function riempiTabellaOrarioCompleto() {
   var k=1;
   for(var i=1; i<7; i++) {
-    for(var j=1; j<9; j++) {
+    for(var j=1; j<7; j++) {
       document.getElementById("lezione-"+k).innerHTML=orario[i][j];
       k++;
     }
@@ -368,7 +330,7 @@ function riempiTabellaOrarioCompleto() {
 
 // funzione che filtra la tabella dell'orario completo per una materia
 function filtroMaterie(materia) {
-  for(var i=1; i<49; i++) {
+  for(var i=1; i<36; i++) {
     var lezione=document.getElementById("lezione-"+i);
     if(materia==lezione.innerHTML) {
       lezione.style.backgroundColor="lightgrey";
@@ -382,7 +344,7 @@ function filtroMaterie(materia) {
 
 // funzione che azzera il filtro
 function azzeraFiltro() {
-  for(var i=1; i<49; i++) {
+  for(var i=1; i<36; i++) {
     var lezione=document.getElementById("lezione-"+i);
     lezione.style.backgroundColor="white";
     lezione.style.opacity=1;
@@ -430,9 +392,6 @@ function paginaCaricataTest() {
       break;
     case "lezioni-finite":
       var data=new Date(2020, 10, 14, 14, 0);
-      break;
-    case "lezioni-pomeridiane":
-      var data=new Date(2020, 10, 11, 13, 0);
       break;
     case "morti":
       var data=new Date(2020, 10, 2);
