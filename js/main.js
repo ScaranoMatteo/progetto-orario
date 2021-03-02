@@ -58,7 +58,7 @@ var giorniDiVacanza=[
 
 // funzione che viene chiamata quando il file index.html è stata caricato
 function paginaCaricataOrarioOdierno() {
-  var oggi=new Date(2021,1,22,8,45);
+  var oggi=new Date();
   var totaleMinuti=oggi.getHours()*60+oggi.getMinutes();
   riempiPagina(oggi, oggi.getDay(), totaleMinuti);
 }
